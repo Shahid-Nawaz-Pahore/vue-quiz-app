@@ -1,20 +1,22 @@
 <script setup>
 import q from './data/quizes.json';
+import {ref} from 'vue';
+const quizes = ref(q)
 </script>
 
 <template>
   <div class="container">
-    {{ q }}
+    <!-- {{ quizes}} -->
     <header>
       <h1>quizes</h1> 
       <input type="text" placeholder="Please search here...">
     </header>
     <div class="options-container">
-      <div class="card">
-        <img src="https://marvel-b1-cdn.bc0a.com/f00000000026007/resilienteducator.com/wp-content/uploads/2012/11/AdobeStock_60467600_cup.jpg" alt="subject image">
+      <div v-for="quiz in quizes" :key="quiz.iq" class="card">
+        <img  :src="quiz.img" a lt="subject image">
         <div class="card-text">
-          <h2>Math</h2>
-          <p>5 Qustions</p>
+          <h2>{{ quiz.name }}</h2>
+          <p>{{quiz.questions.length}} Qustions</p>
         </div>
       </div>
     </div>
